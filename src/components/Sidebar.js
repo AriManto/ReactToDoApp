@@ -10,10 +10,10 @@ class Sidebar extends React.Component {
                     <input type="text" className="form-control"></input>
                     <hr></hr>
                     <h3>Add item</h3>
-                    <textarea className="form-control"></textarea>
+                    <textarea id="addItemTextArea" className="form-control"></textarea>
                     <div>
-                        <button id="addBtn" className="btn btn-outline-primary">Add</button>
-                        <button id="clearBtn" className="btn btn-outline-secondary">Clear</button>
+                        <button id="addBtn" className="btn btn-outline-primary" onClick={this.props.onClickAddItem.bind(this)}>Add</button>
+                        <button id="clearBtn" className="btn btn-outline-secondary" onClick={this.props.onClickClear.bind(this)}>Clear</button>
                     </div>
                 </form>
             </div>

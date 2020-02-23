@@ -2,7 +2,6 @@ import React from 'react';
 import './ToDoItem.css';
 class ToDoItem extends React.Component {
     getStyle = () => {
-      console.log(this.props.item.completed);
       return {
         textDecoration: this.props.item.completed ? 'line-through' : 'none'
       }

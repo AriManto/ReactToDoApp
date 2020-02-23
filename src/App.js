@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import  Header  from './components/Header';
+import uuid from 'uuid';
 import ToDoContainer from './components/ToDoContainer';
 import './App.css';
 import Sidebar from './components/Sidebar';
@@ -14,37 +15,37 @@ class App extends React.Component {
   }
   items = [
       {   
-          id: 0,
+          id: uuid.v4(),
           content: "Clean the house",
           completed: false
       },
       {   
-          id: 1,
+          id: uuid.v4(),
           content: "Study for finals",
           completed: false
       },
       {   
-          id: 2,
+          id: uuid.v4(),
           content: "Take the dog out for a walk",
           completed: false
       },
       {   
-          id: 3,
+          id: uuid.v4(),
           content: "Run for 1 hour",
           completed: false
       },
       {   
-          id: 4,
+          id: uuid.v4(),
           content: "Call the bank to extend the credit card limit",
           completed: false
       },
       {   
-          id: 5,
+          id: uuid.v4(),
           content: "Buy many bottles of Manaos de Uva",
           completed: false
       },
       {   
-          id: 6,
+          id: uuid.v4(),
           content: "Eat doritos and mountain dew",
           completed: false
       }
@@ -74,6 +75,22 @@ class App extends React.Component {
       })
     })
   }
+  
+  onClickAddItem = (event) => {
+    event.preventDefault();
+    let newContent = document.querySelector('#addItemTextArea').value;
+    let newId = uuid.v4();
+    this.setState({
+      items: [...this.state.items].concat([{id: newId, content: newContent, completed: false}])
+    }) 
+    event.target.blur();
+  }
+
+  onClickClear = (event) => {
+    event.preventDefault();
+    document.querySelector('#addItemTextArea').value = '';
+    event.target.blur();
+  }
 
   render(){
     return (
@@ -81,7 +98,7 @@ class App extends React.Component {
       <Helmet><title>{ TITLE }</title></Helmet>
       <Header />
       <div id="mainArea">
-        <Sidebar />
+        <Sidebar onClickAddItem={this.onClickAddItem} onClickClear={this.onClickClear}/>
         <ToDoContainer items={this.state.items} onClickDelete={this.onClickDelete}
           onCheckboxChange={this.onCheckboxChange}/>
       </div>
