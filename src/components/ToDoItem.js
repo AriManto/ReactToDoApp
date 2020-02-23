@@ -14,7 +14,7 @@ class ToDoItem extends React.Component {
           <div className="todoCheckboxWrapper">
             <input className="todoCheckbox" type="checkbox" 
             onChange={this.props.onCheckboxChange.bind(this, id)}
-            value={this.props.item.completed}></input>
+            checked={this.props.item.completed}></input>
           </div>
           <div className="todoTextWrapper">
             <p className="todoText" style={this.getStyle()}>{content}</p>

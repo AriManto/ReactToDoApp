@@ -11,7 +11,8 @@ const TITLE = 'React ToDo App'
 class App extends React.Component {
 
   state = {
-    items : []
+    items : [],
+    filter: ''
   }
   items = [
       {   
