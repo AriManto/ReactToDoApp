@@ -15,9 +15,9 @@ class ToDoContainer extends React.Component {
                 onCheckboxChange={this.props.onCheckboxChange}/>)
         }
       return (
-        <div id="mainContainer">
+        <>
             {result}
-        </div>
+        </>
       )
     }
   }

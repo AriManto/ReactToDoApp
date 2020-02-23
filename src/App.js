@@ -54,7 +54,9 @@ class App extends React.Component {
 
   constructor(){
       super();
-      this.state = {items:this.items}; // Initial data state
+      this.state = {
+        items:this.items,
+        filter:''}; // Initial data state
   }
 
   onClickDelete = (id,event) => {
@@ -93,15 +95,35 @@ class App extends React.Component {
     event.target.blur();
   }
 
+  onChangeSearch = (event) => {
+    console.dir(event.target);
+    this.setState({
+      filter: event.target.value
+    });
+  }
+
+  toggleRender = () => {
+      if(this.state.filter === '' || this.state.filter === undefined) {
+        return <ToDoContainer items={this.state.items} onClickDelete={this.onClickDelete}
+        onCheckboxChange={this.onCheckboxChange}/>;
+      } else {
+        let filteredItems = this.state.items.filter(item => {
+          return item.content.toLowerCase().includes(this.state.filter.toLowerCase());
+        });
+        return <ToDoContainer items={filteredItems} onClickDelete={this.onClickDelete}
+        onCheckboxChange={this.onCheckboxChange}/>;
+      }
+  }
+
   render(){
     return (
       <>
       <Helmet><title>{ TITLE }</title></Helmet>
       <Header />
       <div id="mainArea">
-        <Sidebar onClickAddItem={this.onClickAddItem} onClickClear={this.onClickClear}/>
-        <ToDoContainer items={this.state.items} onClickDelete={this.onClickDelete}
-          onCheckboxChange={this.onCheckboxChange}/>
+        <Sidebar onClickAddItem={this.onClickAddItem} onClickClear={this.onClickClear} onChangeSearch={this.onChangeSearch}/>
+        <div id="mainContainer">{this.toggleRender()}
+        </div>
       </div>
       </>
     )

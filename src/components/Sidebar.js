@@ -7,7 +7,7 @@ class Sidebar extends React.Component {
             <div id="sidebarContainer">
                 <form>
                     <h3>Search</h3>
-                    <input type="text" className="form-control"></input>
+                    <input type="text" className="form-control" onKeyUp={this.props.onChangeSearch.bind(this)}></input>
                     <hr></hr>
                     <h3>Add item</h3>
                     <textarea id="addItemTextArea" className="form-control"></textarea>
