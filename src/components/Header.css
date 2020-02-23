@@ -1,0 +1,19 @@
+header {
+    display: block;
+    height: 10vh;
+}
+#header-container {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+}
+#headerTitle {
+    background-color: #3f51b5;
+    color: #E8E8E8;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 2em;
+    height: 10vh;
+    width: 100%;
+}
