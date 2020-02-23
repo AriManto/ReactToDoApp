@@ -55,16 +55,24 @@ class App extends React.Component {
       this.state = {items:this.items}; // Initial data state
   }
 
-  onClickDelete = (id) => {
-    console.group('Delete '+id);
+  onClickDelete = (id,event) => {
     this.setState({
       items: this.state.items.filter(todo => {
-        console.log('todo.id:'+todo.id+'  |  id:'+id);
         return todo.id !== id;        
       }) 
     });
-    console.groupEnd();
-    console.log(this.state.items);
+    event.target.blur();    
+  }
+
+  onCheckboxChange = (id,event) => {
+    this.setState({
+      items: this.state.items.map(todo => {
+        if (todo.id === id) {
+          todo.completed = event.target.checked;
+        }
+        return todo;
+      })
+    })
   }
 
   render(){
@@ -74,7 +82,8 @@ class App extends React.Component {
       <Header />
       <div id="mainArea">
         <Sidebar />
-        <ToDoContainer items={this.state.items} onClickDelete={this.onClickDelete}/>
+        <ToDoContainer items={this.state.items} onClickDelete={this.onClickDelete}
+          onCheckboxChange={this.onCheckboxChange}/>
       </div>
       </>
     )

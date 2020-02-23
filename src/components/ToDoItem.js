@@ -1,17 +1,24 @@
 import React from 'react';
 import './ToDoItem.css';
 class ToDoItem extends React.Component {
-
+    getStyle = () => {
+      console.log(this.props.item.completed);
+      return {
+        textDecoration: this.props.item.completed ? 'line-through' : 'none'
+      }
+    }
     render(){
       const { id,content } = this.props.item; // Destructuring
 
       return (
         <div className="todoCard">
           <div className="todoCheckboxWrapper">
-            <input className="todoCheckbox" type="checkbox"></input>
+            <input className="todoCheckbox" type="checkbox" 
+            onChange={this.props.onCheckboxChange.bind(this, id)}
+            value={this.props.item.completed}></input>
           </div>
           <div className="todoTextWrapper">
-            <p className="todoText">{content}</p>
+            <p className="todoText" style={this.getStyle()}>{content}</p>
           </div>
           <div className="todoDeleteWrapper">
             <button className="btn btn-outline-danger deleteBtn" 

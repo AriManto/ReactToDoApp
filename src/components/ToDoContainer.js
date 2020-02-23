@@ -11,7 +11,8 @@ class ToDoContainer extends React.Component {
         let result = [];
         for (let i = 0; i < this.props.items.length; i++){
             result.push(<ToDoItem item={this.props.items[i]} key={i}
-                onClickDelete={this.props.onClickDelete}/>)
+                onClickDelete={this.props.onClickDelete}
+                onCheckboxChange={this.props.onCheckboxChange}/>)
         }
       return (
         <div id="mainContainer">
