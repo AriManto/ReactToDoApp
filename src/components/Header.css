@@ -16,4 +16,5 @@ header {
     font-size: 2em;
     height: 10vh;
     width: 100%;
+    cursor: default;
 }

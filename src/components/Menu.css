@@ -1,0 +1,16 @@
+#menuBar {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 25px;
+    border-bottom: solid 1px  #CCC;
+}
+#menuBar p {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: 500;;
+    color: #333;
+}
+.progress-bar {
+    background-color: #3f51b5;
+}

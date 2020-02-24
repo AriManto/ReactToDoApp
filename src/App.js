@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import  Header  from './components/Header';
 import uuid from 'uuid';
 import ToDoContainer from './components/ToDoContainer';
+import Menu from './components/Menu';
 import './App.css';
 import Sidebar from './components/Sidebar';
 
@@ -83,10 +84,13 @@ class App extends React.Component {
     event.preventDefault();
     let newContent = document.querySelector('#addItemTextArea').value;
     let newId = uuid.v4();
-    this.setState({
-      items: [...this.state.items].concat([{id: newId, content: newContent, completed: false}])
-    }) 
+    if (newContent !== '') {
+      this.setState({
+        items: [...this.state.items].concat([{id: newId, content: newContent, completed: false}])
+      }) 
+    }
     event.target.blur();
+    document.querySelector('#addItemTextArea').value = '';
   }
 
   onClickClear = (event) => {
@@ -102,7 +106,7 @@ class App extends React.Component {
     });
   }
 
-  toggleRender = () => {
+  renderToDos = () => {
       if(this.state.filter === '' || this.state.filter === undefined) {
         return <ToDoContainer items={this.state.items} onClickDelete={this.onClickDelete}
         onCheckboxChange={this.onCheckboxChange}/>;
@@ -122,7 +126,13 @@ class App extends React.Component {
       <Header />
       <div id="mainArea">
         <Sidebar onClickAddItem={this.onClickAddItem} onClickClear={this.onClickClear} onChangeSearch={this.onChangeSearch}/>
-        <div id="mainContainer">{this.toggleRender()}
+        <div id="mainContainer">
+          <div id="menuWrapper">
+            <Menu items={this.state.items}/>
+          </div>
+          <div id="todosContainer">
+            {this.renderToDos()}
+          </div>  
         </div>
       </div>
       </>
